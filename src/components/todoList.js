@@ -1,11 +1,12 @@
+import ListGroup from 'react-bootstrap/ListGroup';
 import React from "react";
 
 const Todo = props => (
-<li onClick={() => props.deleteTodo(props.todo)}>{props.todo}</li>
+<ListGroup.Item variant="primary" onClick={() => props.deleteTodo(props.todo)}>{props.todo}</ListGroup.Item>
 );
 const TodoList = props => {
     return (
-        <ul>
+        <ListGroup>
             {props.todos.map(todo => (
                 <Todo 
                     todo={todo} 
@@ -13,7 +14,7 @@ const TodoList = props => {
                     deleteTodo={props.deleteTodo}
                 />
             ))}
-        </ul>
+        </ListGroup>
     );
 };
 

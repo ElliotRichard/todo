@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
 import TodoList from './components/todoList';
 import TodoForm from './components/todoForm';
@@ -19,12 +19,14 @@ class App extends React.Component {
   deleteTodo = selectedTodo => {
     this.setState(prevState => ({
       todos: prevState.todos.filter(todo => todo !== selectedTodo),
-    }))
-  }
+    }));
+  };
   render() {
     return (
       <div className="App">
-        <h1>To-Do</h1>
+              <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>To-Do</Navbar.Brand>
+      </Navbar>
         <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
         <TodoForm addTodo={this.addTodo} />
       </div>
