@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       todos: [],
+      completedTodos: [],
     };
   }
   addTodo = todo => {
@@ -18,16 +19,25 @@ class App extends React.Component {
   };
   deleteTodo = selectedTodo => {
     this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo !== selectedTodo),
+      completedTodos: prevState.todos.filter(todo => todo !== selectedTodo),
     }));
   };
+  completeTodo = selectedTodo => {
+    this.setState(prevState => ({
+      todos: prevState.todos.filter(todo => todo !== selectedTodo),
+      completedTodos: [...prevState.completedTodos, selectedTodo],
+    }))
+  }
   render() {
     return (
       <div className="App">
               <Navbar bg="dark" variant="dark">
         <Navbar.Brand>To-Do</Navbar.Brand>
       </Navbar>
-        <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        <h2>Active</h2>
+        <TodoList todos={this.state.todos} variant="primary" clickAction={this.completeTodo} />
+        <h2>Completed</h2>
+        <TodoList todos={this.state.completedTodos} variant="success" clickAction={this.deleteTodo} />
         <TodoForm addTodo={this.addTodo} />
       </div>
     );
